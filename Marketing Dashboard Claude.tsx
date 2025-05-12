@@ -44,19 +44,6 @@ interface RatingDistItem {
   count: number;
 }
 
-// BMW Brand Colors
-const BMW_COLORS = {
-  darkBlue: "#1C69D4",
-  midBlue: "#6295D8",
-  grey: "#8E8E8E",
-  lightGrey: "#F6F6F6",
-  darkGrey: "#444444",
-  // Rating colors (light shades)
-  lightRed: "#FF9999",
-  lightAmber: "#FFCC99",
-  lightGreen: "#A3C9A8",
-};
-
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState<
     "overview" | "content" | "ratings"
@@ -143,16 +130,16 @@ const Dashboard = () => {
     }));
   };
 
-  // Colors for charts - using BMW color scheme
-  const CHART_COLORS = [
-    BMW_COLORS.darkBlue,
-    BMW_COLORS.midBlue,
-    BMW_COLORS.grey,
-    BMW_COLORS.darkGrey,
-    "#0077B6", // Additional blues that complement BMW colors
-    "#90E0EF",
-    "#023E8A",
-    "#ADE8F4",
+  // Colors for charts
+  const COLORS = [
+    "#0088FE",
+    "#00C49F",
+    "#FFBB28",
+    "#FF8042",
+    "#8884d8",
+    "#82ca9d",
+    "#ffc658",
+    "#8dd1e1",
   ];
 
   // Custom tooltips
@@ -199,28 +186,13 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col w-full">
       {/* Header Section */}
-      <div
-        style={{ backgroundColor: BMW_COLORS.lightGrey }}
-        className="p-4 rounded-t-lg shadow"
-      >
-        <div className="flex items-center mb-3">
-          <img
-            src="/images/logo.png"
-            alt="BMW Motorrad Logo"
-            className="h-12 mr-4"
-          />
-          <div>
-            <h1
-              className="text-2xl font-bold"
-              style={{ color: BMW_COLORS.darkGrey }}
-            >
-              Marketing Materials & Activities Dashboard
-            </h1>
-            <p style={{ color: BMW_COLORS.grey }}>
-              Analysis of 22 survey responses from dealership partners
-            </p>
-          </div>
-        </div>
+      <div className="bg-gray-100 p-4 rounded-t-lg shadow">
+        <h1 className="text-2xl font-bold text-center">
+          Marketing Materials & Activities Dashboard
+        </h1>
+        <p className="text-center text-gray-600">
+          Analysis of 22 survey responses from dealership partners
+        </p>
       </div>
 
       {/* Navigation Tabs */}
@@ -229,14 +201,9 @@ const Dashboard = () => {
           onClick={() => setActiveTab("overview")}
           className={`py-2 px-4 font-medium ${
             activeTab === "overview"
-              ? "text-white"
+              ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-100"
           }`}
-          style={{
-            backgroundColor:
-              activeTab === "overview" ? BMW_COLORS.darkBlue : "transparent",
-            color: activeTab === "overview" ? "white" : BMW_COLORS.darkGrey,
-          }}
         >
           Overview
         </button>
@@ -244,14 +211,9 @@ const Dashboard = () => {
           onClick={() => setActiveTab("content")}
           className={`py-2 px-4 font-medium ${
             activeTab === "content"
-              ? "text-white"
+              ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-100"
           }`}
-          style={{
-            backgroundColor:
-              activeTab === "content" ? BMW_COLORS.darkBlue : "transparent",
-            color: activeTab === "content" ? "white" : BMW_COLORS.darkGrey,
-          }}
         >
           Content Analysis
         </button>
@@ -259,14 +221,9 @@ const Dashboard = () => {
           onClick={() => setActiveTab("ratings")}
           className={`py-2 px-4 font-medium ${
             activeTab === "ratings"
-              ? "text-white"
+              ? "bg-blue-500 text-white"
               : "text-gray-600 hover:bg-gray-100"
           }`}
-          style={{
-            backgroundColor:
-              activeTab === "ratings" ? BMW_COLORS.darkBlue : "transparent",
-            color: activeTab === "ratings" ? "white" : BMW_COLORS.darkGrey,
-          }}
         >
           Ratings & Feedback
         </button>
@@ -279,12 +236,7 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Sales Activities */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
-                Sales Activities
-              </h2>
+              <h2 className="text-lg font-bold mb-2">Sales Activities</h2>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
@@ -292,14 +244,11 @@ const Dashboard = () => {
                     layout="vertical"
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
-                    <CartesianGrid
-                      strokeDasharray="3 3"
-                      stroke={BMW_COLORS.lightGrey}
-                    />
+                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
                     <YAxis type="category" dataKey="name" width={180} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="count" fill={BMW_COLORS.darkBlue} />
+                    <Bar dataKey="count" fill="#0088FE" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -307,12 +256,7 @@ const Dashboard = () => {
 
             {/* Communication Channels */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
-                Communication Channels
-              </h2>
+              <h2 className="text-lg font-bold mb-2">Communication Channels</h2>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
@@ -320,14 +264,11 @@ const Dashboard = () => {
                     layout="vertical"
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
-                    <CartesianGrid
-                      strokeDasharray="3 3"
-                      stroke={BMW_COLORS.lightGrey}
-                    />
+                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
                     <YAxis type="category" dataKey="name" width={100} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="count" fill={BMW_COLORS.midBlue} />
+                    <Bar dataKey="count" fill="#00C49F" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -335,10 +276,7 @@ const Dashboard = () => {
 
             {/* Overall Ratings */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
+              <h2 className="text-lg font-bold mb-2">
                 Overall Ratings (Scale 1-6)
               </h2>
               <div className="h-64">
@@ -349,23 +287,17 @@ const Dashboard = () => {
                     outerRadius="80%"
                     data={ratings}
                   >
-                    <PolarGrid stroke="#000000" strokeWidth={0.5} />
+                    <PolarGrid />
                     <PolarAngleAxis
                       dataKey="category"
                       tick={{ fontSize: 10 }}
-                      stroke="#000000"
-                      strokeWidth={0.5}
                     />
-                    <PolarRadiusAxis
-                      domain={[0, 6]}
-                      stroke="#000000"
-                      strokeWidth={0.5}
-                    />
+                    <PolarRadiusAxis domain={[0, 6]} />
                     <Radar
                       name="Ratings"
                       dataKey="value"
-                      stroke={BMW_COLORS.darkBlue}
-                      fill={BMW_COLORS.darkBlue}
+                      stroke="#FF8042"
+                      fill="#FF8042"
                       fillOpacity={0.6}
                     />
                     <Tooltip content={<RatingsTooltip />} />
@@ -376,12 +308,7 @@ const Dashboard = () => {
 
             {/* Marketing Types */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
-                Marketing Types
-              </h2>
+              <h2 className="text-lg font-bold mb-2">Marketing Types</h2>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -391,7 +318,7 @@ const Dashboard = () => {
                       cy="50%"
                       labelLine={true}
                       outerRadius={80}
-                      fill={BMW_COLORS.darkBlue}
+                      fill="#8884d8"
                       dataKey="count"
                       nameKey="name"
                       label={({ name, percent }) =>
@@ -401,7 +328,7 @@ const Dashboard = () => {
                       {marketingTypes.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
-                          fill={CHART_COLORS[index % CHART_COLORS.length]}
+                          fill={COLORS[index % COLORS.length]}
                         />
                       ))}
                     </Pie>
@@ -419,12 +346,7 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Content Types */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
-                Content Types Used
-              </h2>
+              <h2 className="text-lg font-bold mb-2">Content Types Used</h2>
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
@@ -432,14 +354,11 @@ const Dashboard = () => {
                     layout="vertical"
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
-                    <CartesianGrid
-                      strokeDasharray="3 3"
-                      stroke={BMW_COLORS.lightGrey}
-                    />
+                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
                     <YAxis type="category" dataKey="name" width={180} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="count" fill={BMW_COLORS.darkBlue} />
+                    <Bar dataKey="count" fill="#8884d8" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -447,10 +366,7 @@ const Dashboard = () => {
 
             {/* Content Issues */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
+              <h2 className="text-lg font-bold mb-2">
                 Content Issues Reported
               </h2>
               <div className="h-72">
@@ -460,14 +376,11 @@ const Dashboard = () => {
                     layout="vertical"
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                   >
-                    <CartesianGrid
-                      strokeDasharray="3 3"
-                      stroke={BMW_COLORS.lightGrey}
-                    />
+                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis type="number" />
                     <YAxis type="category" dataKey="name" width={180} />
                     <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="count" fill={BMW_COLORS.midBlue} />
+                    <Bar dataKey="count" fill="#FF8042" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -475,12 +388,7 @@ const Dashboard = () => {
 
             {/* Content Creation Teams */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
-                Content Creation Teams
-              </h2>
+              <h2 className="text-lg font-bold mb-2">Content Creation Teams</h2>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -490,7 +398,7 @@ const Dashboard = () => {
                       cy="50%"
                       labelLine={true}
                       outerRadius={80}
-                      fill={BMW_COLORS.darkBlue}
+                      fill="#8884d8"
                       dataKey="count"
                       nameKey="name"
                       label={({ name, percent }) =>
@@ -500,7 +408,7 @@ const Dashboard = () => {
                       {contentCreationTeams.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
-                          fill={CHART_COLORS[index % CHART_COLORS.length]}
+                          fill={COLORS[index % COLORS.length]}
                         />
                       ))}
                     </Pie>
@@ -513,12 +421,7 @@ const Dashboard = () => {
 
             {/* Key Insights */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
-                Key Content Insights
-              </h2>
+              <h2 className="text-lg font-bold mb-2">Key Content Insights</h2>
               <div className="h-64 overflow-y-auto">
                 <ul className="list-disc pl-5 space-y-2">
                   <li>
@@ -562,10 +465,7 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 gap-6">
             {/* Ratings Overview */}
             <div className="bg-gray-50 p-4 rounded shadow">
-              <h2
-                className="text-lg font-bold mb-2"
-                style={{ color: BMW_COLORS.darkBlue }}
-              >
+              <h2 className="text-lg font-bold mb-2">
                 Ratings Summary (Scale 1-6)
               </h2>
               <div className="h-80">
@@ -574,7 +474,7 @@ const Dashboard = () => {
                     data={ratings}
                     margin={{ top: 20, right: 20, bottom: 60, left: 20 }}
                   >
-                    <CartesianGrid stroke={BMW_COLORS.lightGrey} />
+                    <CartesianGrid stroke="#f5f5f5" />
                     <XAxis
                       dataKey="category"
                       angle={-45}
@@ -584,29 +484,21 @@ const Dashboard = () => {
                     />
                     <YAxis domain={[0, 6]} />
                     <Tooltip />
-                    <Bar
-                      dataKey="value"
-                      barSize={30}
-                      fill={BMW_COLORS.darkBlue}
-                    >
+                    <Bar dataKey="value" barSize={30} fill="#413ea0">
                       {ratings.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}
                           fill={
                             entry.value >= 4
-                              ? BMW_COLORS.lightGreen
+                              ? "#00C49F"
                               : entry.value >= 3
-                              ? BMW_COLORS.lightAmber
-                              : BMW_COLORS.lightRed
+                              ? "#FFBB28"
+                              : "#FF8042"
                           }
                         />
                       ))}
                     </Bar>
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke={BMW_COLORS.darkBlue}
-                    />
+                    <Line type="monotone" dataKey="value" stroke="#ff7300" />
                   </ComposedChart>
                 </ResponsiveContainer>
               </div>
@@ -617,15 +509,9 @@ const Dashboard = () => {
               {/* Rating Selector and Distribution */}
               <div className="bg-gray-50 p-4 rounded shadow">
                 <div className="flex justify-between items-center mb-4">
-                  <h2
-                    className="text-lg font-bold"
-                    style={{ color: BMW_COLORS.darkBlue }}
-                  >
-                    Rating Distribution
-                  </h2>
+                  <h2 className="text-lg font-bold">Rating Distribution</h2>
                   <select
                     className="border rounded p-1"
-                    style={{ borderColor: BMW_COLORS.midBlue }}
                     value={selectedRating}
                     onChange={(e) => setSelectedRating(e.target.value)}
                   >
@@ -643,10 +529,7 @@ const Dashboard = () => {
                       data={prepareRatingDistribution(selectedRating)}
                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                     >
-                      <CartesianGrid
-                        strokeDasharray="3 3"
-                        stroke={BMW_COLORS.lightGrey}
-                      />
+                      <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="rating"
                         label={{
@@ -663,17 +546,17 @@ const Dashboard = () => {
                         }}
                       />
                       <Tooltip />
-                      <Bar dataKey="count" fill={BMW_COLORS.darkBlue}>
+                      <Bar dataKey="count" fill="#8884d8">
                         {prepareRatingDistribution(selectedRating).map(
                           (entry, index) => (
                             <Cell
                               key={`cell-${index}`}
                               fill={
                                 index < 2
-                                  ? BMW_COLORS.lightRed
+                                  ? "#FF8042"
                                   : index < 4
-                                  ? BMW_COLORS.lightAmber
-                                  : BMW_COLORS.lightGreen
+                                  ? "#FFBB28"
+                                  : "#00C49F"
                               }
                             />
                           )
@@ -686,12 +569,7 @@ const Dashboard = () => {
 
               {/* Key Findings */}
               <div className="bg-gray-50 p-4 rounded shadow">
-                <h2
-                  className="text-lg font-bold mb-2"
-                  style={{ color: BMW_COLORS.darkBlue }}
-                >
-                  Key Findings
-                </h2>
+                <h2 className="text-lg font-bold mb-2">Key Findings</h2>
                 <div className="h-64 overflow-y-auto">
                   <ul className="list-disc pl-5 space-y-2">
                     <li>
@@ -742,28 +620,12 @@ const Dashboard = () => {
       </div>
 
       {/* Footer with recommendations */}
-      <div
-        className="mt-4 p-4 rounded-b-lg shadow"
-        style={{ backgroundColor: BMW_COLORS.lightGrey }}
-      >
-        <h2
-          className="text-lg font-bold mb-2"
-          style={{ color: BMW_COLORS.darkBlue }}
-        >
-          Key Recommendations
-        </h2>
+      <div className="mt-4 p-4 bg-blue-50 rounded-b-lg shadow">
+        <h2 className="text-lg font-bold mb-2">Key Recommendations</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-white p-3 rounded shadow">
-            <h3
-              className="font-semibold"
-              style={{ color: BMW_COLORS.darkBlue }}
-            >
-              Content Creation
-            </h3>
-            <ul
-              className="list-disc pl-5 text-sm mt-2"
-              style={{ color: BMW_COLORS.darkGrey }}
-            >
+            <h3 className="font-semibold text-blue-600">Content Creation</h3>
+            <ul className="list-disc pl-5 text-sm mt-2">
               <li>Increase quantity of available materials</li>
               <li>Provide more video content (most requested format)</li>
               <li>Limit use of AI-generated images or improve quality</li>
@@ -772,16 +634,8 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white p-3 rounded shadow">
-            <h3
-              className="font-semibold"
-              style={{ color: BMW_COLORS.darkBlue }}
-            >
-              Local Relevance
-            </h3>
-            <ul
-              className="list-disc pl-5 text-sm mt-2"
-              style={{ color: BMW_COLORS.darkGrey }}
-            >
+            <h3 className="font-semibold text-blue-600">Local Relevance</h3>
+            <ul className="list-disc pl-5 text-sm mt-2">
               <li>Develop templates that allow for local customization</li>
               <li>Consider regional variations in marketing materials</li>
               <li>Provide editable templates that require less modification</li>
@@ -790,16 +644,10 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-white p-3 rounded shadow">
-            <h3
-              className="font-semibold"
-              style={{ color: BMW_COLORS.darkBlue }}
-            >
+            <h3 className="font-semibold text-blue-600">
               Distribution & Support
             </h3>
-            <ul
-              className="list-disc pl-5 text-sm mt-2"
-              style={{ color: BMW_COLORS.darkGrey }}
-            >
+            <ul className="list-disc pl-5 text-sm mt-2">
               <li>Streamline access to video content for local use</li>
               <li>Provide social media calendars and ready-to-use content</li>
               <li>Create pre-launch content packages with varied assets</li>
